@@ -33,19 +33,17 @@ Uso **MNIST**, el dataset clásico de dígitos manuscritos (0 al 9):
 
 ### Baseline (Fully Connected)
 
-```
+
 Input (28x28) → Flatten (784) → Dense(128, ReLU) → Dense(10, Softmax)
-```
+
 
 ~101,770 parámetros. El Flatten aplana la imagen y se pierde toda la info espacial.
 
 ### CNN
 
-```
 Input(28x28x1) → Conv2D(32, 3x3) → MaxPool(2x2)
                → Conv2D(64, 3x3) → MaxPool(2x2)
                → Flatten → Dense(64, ReLU) → Dense(10, Softmax)
-```
 
 ~121,930 parámetros. Usa kernels 3×3 para detectar patrones locales y MaxPooling para reducir dimensiones.
 
@@ -88,9 +86,9 @@ El 3×3 es el más eficiente. El 7×7 tiene más parámetros y achica demasiado 
 
 Como SageMaker no tiene acceso a internet (al menos en mi configuración), tuve que:
 
-1. Descargar `mnist.npz` en mi computador local
-2. Subir tanto el notebook como `mnist.npz` arrastrándolos a SageMaker, en la ruta `user-default-efs/AREP/lab3/`
-3. Cargar el dataset con `np.load('mnist.npz')` en vez de `keras.datasets.mnist.load_data()`, para no depender de internet
+1. Descargar mnist.npz en mi computador local
+2. Subir tanto el notebook como mnist.npz arrastrándolos a SageMaker, en la ruta user-default-efs/AREP/lab3/
+3. Cargar el dataset con np.load('mnist.npz') en vez de keras.datasets.mnist.load_data(), para no depender de internet
 
 ![Notebook ejecutándose en SageMaker](img/sagemaker_notebook.png)
 
@@ -98,7 +96,7 @@ Como SageMaker no tiene acceso a internet (al menos en mi configuración), tuve 
 
 ## Estructura del repositorio
 
-```
+
 AREP3/
 ├── CNN_MNIST_Assignment.ipynb    # Notebook principal con todo el análisis
 ├── mnist.npz                      # Dataset (se sube manual a SageMaker)
@@ -106,12 +104,12 @@ AREP3/
 │   ├── sagemaker_notebook.png
 │   └── sagemaker_results.png
 └── README.md
-```
+
 
 ## Cómo ejecutar
 
 1. Abrir SageMaker Studio y navegar a la carpeta del proyecto
-2. Subir `mnist.npz` a la misma carpeta del notebook si no está
+2. Subir mnist.npz a la misma carpeta del notebook si no está
 3. Ejecutar todas las celdas en orden (Run All)
 
 Si se quiere correr en local, se necesita Python 3.9-3.12 con TensorFlow instalado (Python 3.13+ no es compatible con TensorFlow todavía).
